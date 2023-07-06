@@ -1,8 +1,8 @@
-import Header from "../components/header";
+import Hero from "../components/hero";
 export default function Index() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-           <Header />      
+           <Hero />      
     </div>
   );
 }

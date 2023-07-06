@@ -1,4 +1,5 @@
 const { MetaFunction } = require("@vercel/remix");
+import stylesheet from "~/tailwind.css";
 import {
   Links,
   LiveReload,
@@ -13,17 +14,20 @@ export const meta = () => ({
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
-const defaultStyle = {
-  background: "#000000",
-};
-
+export const links = () => [
+  {
+    rel: "stylesheet",
+    href: stylesheet,
+  },
+];
 export default function App() {
   return (
-    <html lang="en" style={defaultStyle}>
+    <html lang="en" className="bg-black">
       
       <head>
         <Meta />
-        <Links />
+        <Links/>
+         
       </head>
       <body >
         <Outlet />
