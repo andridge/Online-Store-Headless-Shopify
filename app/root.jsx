@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@vercel/remix";
+const { MetaFunction } = require("@vercel/remix");
 import {
   Links,
   LiveReload,
@@ -8,21 +8,24 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { Analytics } from "@vercel/analytics/react";
-
-export const meta: MetaFunction = () => ({
+export const meta = () => ({
   charset: "utf-8",
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
+const defaultStyle = {
+  background: "#000000",
+};
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" style={defaultStyle}>
+      
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body >
         <Outlet />
         <ScrollRestoration />
         <Scripts />
