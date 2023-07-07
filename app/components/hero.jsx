@@ -1,4 +1,26 @@
+
 export default function Hero() {
+  function smoothScrollToBottom(duration) {
+    const start = window.pageYOffset;
+    const distance = document.documentElement.scrollHeight - window.innerHeight;
+    const startTime = performance.now();
+  
+    function scrollStep(timestamp) {
+      const currentTime = timestamp || performance.now();
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeInOutCubic = progress < 0.5 ? 4 * progress ** 3 : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
+      window.scrollTo(0, start + distance * easeInOutCubic);
+  
+      if (progress < 1) {
+        window.requestAnimationFrame(scrollStep);
+      }
+    }
+  
+    window.requestAnimationFrame(scrollStep);
+  };
+  function handleClick() {
+    smoothScrollToBottom(1550); // Adjust the duration (in milliseconds) for the desired scrolling speed
+  }
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
@@ -29,7 +51,7 @@ export default function Hero() {
             </h1>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                 onClick={handleClick}
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                Click Me 
